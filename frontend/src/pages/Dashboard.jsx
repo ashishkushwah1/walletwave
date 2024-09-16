@@ -7,6 +7,7 @@ import { useRecoilState } from 'recoil'
 import { balanceState } from '../utils/recoilState'
 const Dashboard = () => {
     const [balance, setBalance] = useRecoilState(balanceState);
+    axios.defaults.withCredentials = true;
     useEffect(()=>{
         try{
         axios.get("https://walletwave-peach.vercel.app/api/v1/account/balance",{

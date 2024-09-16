@@ -12,6 +12,7 @@ const Signin = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  axios.defaults.withCredentials = true;
   return <div className='bg-slate-300 h-screen flex justify-center'>
     <div className='flex flex-col justify-center'>
       <div className='rounded-lg bg-white w-80 text-center p-2 h-max px-4'>

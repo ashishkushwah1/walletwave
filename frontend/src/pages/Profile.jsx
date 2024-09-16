@@ -9,6 +9,7 @@ const Profile = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [password, setPassword] = useState('');
+    axios.defaults.withCredentials = true;
     const updateProfile = async () => {
         setLoading(true);
         try {

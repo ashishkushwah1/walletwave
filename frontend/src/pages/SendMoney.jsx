@@ -16,6 +16,7 @@ const SendMoney = () => {
     const handleAmountChange = (e) => {
         setAmount(parseFloat(e.target.value) || 0);
     }
+    axios.defaults.withCredentials = true;
     const sendMoney = async () => {
         setLoading(true);
         try {
