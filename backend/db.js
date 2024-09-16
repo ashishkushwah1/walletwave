@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
-mongoose.connect(process.env.MONGOD_URI);
+mongoose.connect(process.env.MONGODB_URI);
 
 const userSchema = mongoose.Schema({
     username: {

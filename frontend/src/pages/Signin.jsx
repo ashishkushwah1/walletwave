@@ -10,6 +10,7 @@ const Signin = () => {
   const [username, setUsername] = useState("");
   const [password, serPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   return <div className='bg-slate-300 h-screen flex justify-center'>
     <div className='flex flex-col justify-center'>
@@ -24,14 +25,16 @@ const Signin = () => {
           )
         }
         <div className='pt-4'>
-          <Button label={"Sign in"} onClick={async () => {
+          <Button label={loading?"Logging in...":"Sign in"} onClick={async () => {
             try{
+              setLoading(true);
               const response = await axios.post("http://localhost:3000/api/v1/user/signin", {
                 username,
                 password
               });
               localStorage.setItem("token",response.data.token);
               navigate('/dashboard');
+              setLoading(false);
             } catch (error){
               if (error.response && error.response.status === 411) {
                 setErrorMessage("Incorrect username or password. Please try again.");
@@ -39,6 +42,7 @@ const Signin = () => {
                 setErrorMessage("An error occurred. Please try again later.");
               }
             }
+            setLoading(false);
           }} />
         </div>
         <BottomWarning label={"Don't have an account?"} buttonText={"Sign up"} to={"/signup"} />

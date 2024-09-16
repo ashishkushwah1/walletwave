@@ -3,13 +3,7 @@ const app = express();
 const router = require('./routes/index');
 const cors = require('cors');
 
-app.use(cors(
-    {
-        origin: ["https://walletwave.verce.app"],
-        methods: ["POST", "GET", "PUT"],
-        credentials: true
-    }
-));
+app.use(cors());
 app.use(express.json());
 app.use('/api/v1', router);
 app.get("/", (req, res) => {

@@ -12,6 +12,7 @@ const Signup = () => {
   const [username, setUsername] = useState("");
   const [password, serPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   return <div className='bg-slate-300 h-screen flex justify-center'>
     <div className='flex flex-col justify-center'>
@@ -28,7 +29,8 @@ const Signup = () => {
           )
         }
         <div className='pt-4'>
-          <Button label={"Sign up"} onClick={async () => {
+          <Button label={loading?"Signing up..":"Sign up"} onClick={async () => {
+            setLoading(true);
             try{
               const response = await axios.post("http://localhost:3000/api/v1/user/signup", {
                 username,
@@ -38,6 +40,7 @@ const Signup = () => {
               });
               localStorage.setItem("token",response.data.token);
               navigate('/dashboard');
+              setLoading(false);
             } catch(error){
               if (error.response && error.response.status === 411) {
                 setErrorMessage("Email already exists");
@@ -47,6 +50,7 @@ const Signup = () => {
                 setErrorMessage("An error occurred. Please try again later.");
               }
             }
+            setLoading(false);
           }} />
         </div>
         <BottomWarning label={"Already have an account?"} buttonText={"Sign in"} to={"/signin"} />
