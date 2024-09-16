@@ -16,9 +16,6 @@ yarn-error.log*
 *.db
 *.db-journal
 
-# Config files containing sensitive data
-config.js
-
 # MongoDB dump files
 dump/
 
