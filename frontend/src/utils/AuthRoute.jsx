@@ -8,7 +8,7 @@ function AuthRoute({ element: Component }) {
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
-            axios.get('http://localhost:3000/api/v1/user/me', {
+            axios.get('https://walletwave-peach.vercel.app/api/v1/user/me', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
