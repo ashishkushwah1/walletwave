@@ -12,7 +12,7 @@ const Profile = () => {
     const updateProfile = async () => {
         setLoading(true);
         try {
-            await axios.put("http://localhost:3000/api/v1/user", {
+            await axios.put("https://walletwave-peach.vercel.app/api/v1/user", {
                 password,
                 firstName,
                 lastName

@@ -32,7 +32,7 @@ const Signup = () => {
           <Button label={loading?"Signing up..":"Sign up"} onClick={async () => {
             setLoading(true);
             try{
-              const response = await axios.post("http://localhost:3000/api/v1/user/signup", {
+              const response = await axios.post("https://walletwave-peach.vercel.app/api/v1/user/signup", {
                 username,
                 password,
                 firstName,

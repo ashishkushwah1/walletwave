@@ -28,7 +28,7 @@ const Signin = () => {
           <Button label={loading?"Logging in...":"Sign in"} onClick={async () => {
             try{
               setLoading(true);
-              const response = await axios.post("http://localhost:3000/api/v1/user/signin", {
+              const response = await axios.post("https://walletwave-peach.vercel.app/api/v1/user/signin", {
                 username,
                 password
               });

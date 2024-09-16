@@ -9,7 +9,7 @@ const Dashboard = () => {
     const [balance, setBalance] = useRecoilState(balanceState);
     useEffect(()=>{
         try{
-        axios.get("http://localhost:3000/api/v1/account/balance",{
+        axios.get("https://walletwave-peach.vercel.app/api/v1/account/balance",{
             headers:{
                 Authorization: "Bearer "+localStorage.getItem("token")
             }

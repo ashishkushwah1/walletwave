@@ -19,7 +19,7 @@ export const Users = () => {
         const timeoutId = setTimeout(() => {
             // Make the API call only after the timeout
             setIsLoading(true);
-            axios.get(`http://localhost:3000/api/v1/user/bulk?filter=${filter}&page=${currentPage}&limit=${usersPerPage}`, {
+            axios.get(`https://walletwave-peach.vercel.app/api/v1/user/bulk?filter=${filter}&page=${currentPage}&limit=${usersPerPage}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }

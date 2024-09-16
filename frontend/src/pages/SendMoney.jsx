@@ -19,7 +19,7 @@ const SendMoney = () => {
     const sendMoney = async () => {
         setLoading(true);
         try {
-            await axios.post("http://localhost:3000/api/v1/account/transfer", {
+            await axios.post("https://walletwave-peach.vercel.app/api/v1/account/transfer", {
                 to: id,
                 amount
             }, {
@@ -27,7 +27,7 @@ const SendMoney = () => {
                     Authorization: "Bearer " + localStorage.getItem("token")
                 }
             });
-            const res = await axios.get("http://localhost:3000/api/v1/account/balance", {
+            const res = await axios.get("https://walletwave-peach.vercel.app/api/v1/account/balance", {
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("token")
                 }
