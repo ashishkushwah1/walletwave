@@ -4,7 +4,7 @@ import axios from "axios";
 
 function AuthRoute({ element: Component }) {
     const [isAuthenticated, setIsAuthenticated] = useState(null);
-
+    axios.defaults.withCredentials = true;
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {

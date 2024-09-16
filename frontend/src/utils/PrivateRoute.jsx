@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 function PrivateRoute({ element: Component }) {
     const [isAuthenticated, setIsAuthenticated] = useState(null);
-
+    axios.defaults.withCredentials = true;
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {

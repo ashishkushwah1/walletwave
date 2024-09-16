@@ -10,6 +10,7 @@ export const Users = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const usersPerPage = 10;
+    axios.defaults.withCredentials = true;
     const handlePageChange = (newPage) => {
         if (newPage > 0 && newPage <= totalPages) {
             setCurrentPage(newPage); // Update the page
