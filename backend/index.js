@@ -3,7 +3,7 @@ const app = express();
 const router = require('./routes/index');
 const cors = require('cors');
 
-const allowedOrigins = ['http://localhost:3000', 'https://walletwave-frontend.vercel.app'];
+const allowedOrigins = ['http://localhost:5173', 'https://walletwave-frontend.vercel.app'];
 
 app.use(cors({
     origin: function (origin, callback) {
@@ -14,7 +14,7 @@ app.use(cors({
             callback(new Error('Not allowed by CORS'));
         }
     },
-    credentials: true, // If you're sending cookies or using authentication tokens
+    credentials: true,
 }));
 app.use(express.json());
 app.use('/api/v1', router);
