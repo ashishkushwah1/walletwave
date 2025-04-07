@@ -26,6 +26,7 @@ export const Users = () => {
                 }
             })
             .then(response => {
+                console.log(response.data);
                 setUsers(response.data.user);
                 setTotalPages(Math.ceil(response.data.totalUsers/usersPerPage));
                 setIsLoading(false);

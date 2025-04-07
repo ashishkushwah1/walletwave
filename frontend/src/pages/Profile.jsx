@@ -34,7 +34,7 @@ const Profile = () => {
     }
     const {id} = useParams();
     useEffect(() => {
-        axios.get(`https://walletwave-peach.vercel.app/api/v1/user/${id}`).then((res) => {
+        axios.get(`https://walletwave-peach.vercel.app/api/v1/user/bulk/${id}`).then((res) => {
             const { user } = res.data;
             setFirstName(user.firstName);
             setLastName(user.lastName);
