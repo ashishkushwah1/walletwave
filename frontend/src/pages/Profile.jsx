@@ -32,16 +32,15 @@ const Profile = () => {
         setLastName('');
         setLoading(false);
     }
-    const {id} = useParams();
     useEffect(() => {
-        axios.get(`https://walletwave-peach.vercel.app/api/v1/user/bulk/${id}`).then((res) => {
+        axios.get(`https://walletwave-peach.vercel.app/api/v1/user/me`).then((res) => {
             const { user } = res.data;
             setFirstName(user.firstName);
             setLastName(user.lastName);
         }).catch((err) => {
             console.error("Error fetching user data:", err);
         });
-    },[id]);
+    },[]);
 
     return (
         <div className='flex justify-center h-screen bg-gray-100'>
