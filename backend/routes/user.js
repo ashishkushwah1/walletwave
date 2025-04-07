@@ -95,7 +95,7 @@ const updateBody = zod.object({
     lastName: zod.string()
 });
 
-router.get('/:id', authMiddleware, async (req, res) => {
+router.get('/bulk/:id', authMiddleware, async (req, res) => {
     const id = req.userId;
     const user = await User.findById(id).select('username firstName lastName');
     if (!user) {
@@ -141,6 +141,7 @@ router.get('/bulk', authMiddleware, async (req, res) => {
         // Filter out the current user from the results
         const filteredUsers = users.filter(user => String(user._id) !== String(req.userId));
         const paginatedUsers = filteredUsers.slice(skip, skip + limit);
+        console.log(paginatedUsers);
         // Send the paginated users and total count
         res.json({
             user: paginatedUsers.map(user => ({
