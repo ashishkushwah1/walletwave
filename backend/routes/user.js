@@ -129,15 +129,6 @@ router.get('/bulk', authMiddleware, async (req, res) => {
     const skip = (page - 1) * limit;
     
     try {
-        // Query to get the total number of users matching the filter
-        const totalUsers = await User.countDocuments({
-            $or: [{
-                firstName: { '$regex': filter, '$options': 'i' } // Case-insensitive search
-            }, {
-                lastName: { '$regex': filter, '$options': 'i' }
-            }]
-        });
-
         // Fetch the paginated users
         const users = await User.find({
             $or: [{
@@ -145,22 +136,20 @@ router.get('/bulk', authMiddleware, async (req, res) => {
             }, {
                 lastName: { '$regex': filter, '$options': 'i' }
             }]
-        })
-        .skip(skip)
-        .limit(limit);
+        });
 
         // Filter out the current user from the results
         const filteredUsers = users.filter(user => String(user._id) !== String(req.userId));
-
+        const paginatedUsers = filteredUsers.slice(skip, skip + limit);
         // Send the paginated users and total count
         res.json({
-            user: filteredUsers.map(user => ({
+            user: paginatedUsers.map(user => ({
                 username: user.username,
                 firstName: user.firstName,
                 lastName: user.lastName,
                 _id: user._id
             })),
-            totalUsers // Include the total number of filtered users
+            totalUsers: filteredUsers.length // Include the total number of filtered users
         });
     } catch (e) {
         res.status(500).json({ error: 'Server error' });
