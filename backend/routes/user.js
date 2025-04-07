@@ -95,6 +95,15 @@ const updateBody = zod.object({
     lastName: zod.string()
 });
 
+router.get('/:id', authMiddleware, async (req, res) => {
+    const id = req.userId;
+    const user = await User.findById(id).select('username firstName lastName');
+    if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+    }
+    res.json({ user });
+});
+
 router.put('/', authMiddleware, async (req, res) => {
     const body = req.body;
     const { success } = updateBody.safeParse(body);
