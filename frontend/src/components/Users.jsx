@@ -22,7 +22,7 @@ export const Users = () => {
             setIsLoading(true);
             axios.get(`https://walletwave-peach.vercel.app/api/v1/user/bulk?filter=${filter}&page=${currentPage}&limit=${usersPerPage}`, {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                    Authorization: `Bearer ${sessionStorage.getItem("token")}`
                 }
             })
             .then(response => {

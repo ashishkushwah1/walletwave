@@ -39,7 +39,7 @@ const Signup = () => {
                 firstName,
                 lastName
               });
-              localStorage.setItem("token",response.data.token);
+              sessionStorage.setItem("token",response.data.token);
               navigate('/dashboard');
               setLoading(false);
             } catch(error){

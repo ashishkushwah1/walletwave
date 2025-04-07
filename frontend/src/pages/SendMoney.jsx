@@ -25,12 +25,12 @@ const SendMoney = () => {
                 amount
             }, {
                 headers: {
-                    Authorization: "Bearer " + localStorage.getItem("token")
+                    Authorization: "Bearer " + sessionStorage.getItem("token")
                 }
             });
             const res = await axios.get("https://walletwave-peach.vercel.app/api/v1/account/balance", {
                 headers: {
-                    Authorization: "Bearer " + localStorage.getItem("token")
+                    Authorization: "Bearer " + sessionStorage.getItem("token")
                 }
             });
             setBalance(res.data.balance.toFixed(2));

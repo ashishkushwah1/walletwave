@@ -5,7 +5,7 @@ export const Appbar = () => {
     const navigate = useNavigate();
     const [dropDownOpen, setDropDownOpen] = useState(false);
     function handleLogout(){
-        localStorage.removeItem("token");
+        sessionStorage.removeItem("token");
         navigate('/signin');
     }
     function handleProfileChange(){

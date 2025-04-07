@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios';
 
 const Profile = () => {
@@ -19,7 +19,7 @@ const Profile = () => {
                 lastName
             }, {
                 headers: {
-                    Authorization: "Bearer " + localStorage.getItem("token")
+                    Authorization: "Bearer " + sessionStorage.getItem("token")
                 }
             });
             setSuccessMessage(`Updated your profile`);

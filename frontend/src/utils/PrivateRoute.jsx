@@ -6,7 +6,7 @@ function PrivateRoute({ element: Component }) {
     const [isAuthenticated, setIsAuthenticated] = useState(null);
     axios.defaults.withCredentials = true;
     useEffect(() => {
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         if (token) {
             axios.get('https://walletwave-peach.vercel.app/api/v1/user/me', {
                 headers: {
