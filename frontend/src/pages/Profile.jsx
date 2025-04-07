@@ -33,14 +33,19 @@ const Profile = () => {
         setLoading(false);
     }
     useEffect(() => {
-        axios.get(`https://walletwave-peach.vercel.app/api/v1/user/me`).then((res) => {
+        const token = sessionStorage.getItem('token');
+        axios.get(`https://walletwave-peach.vercel.app/api/v1/user/me`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((res) => {
             const { user } = res.data;
             setFirstName(user.firstName);
             setLastName(user.lastName);
         }).catch((err) => {
             console.error("Error fetching user data:", err);
         });
-    },[]);
+    }, []);
 
     return (
         <div className='flex justify-center h-screen bg-gray-100'>
@@ -61,7 +66,7 @@ const Profile = () => {
                                     id='amount'
                                     placeholder='Enter new Password'
                                     value={password}
-                                    onChange={(e)=>setPassword(e.target.value)}
+                                    onChange={(e) => setPassword(e.target.value)}
                                 />
                                 <label className='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70' htmlFor='amount'>
                                     First Name
@@ -72,7 +77,7 @@ const Profile = () => {
                                     id='amount'
                                     placeholder='Enter First Name'
                                     value={firstName}
-                                    onChange={(e)=>setFirstName(e.target.value)}
+                                    onChange={(e) => setFirstName(e.target.value)}
                                 />
                                 <label className='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70' htmlFor='amount'>
                                     Last Name
@@ -83,14 +88,14 @@ const Profile = () => {
                                     id='amount'
                                     placeholder='Enter Last Name'
                                     value={lastName}
-                                    onChange={(e)=>setLastName(e.target.value)}
+                                    onChange={(e) => setLastName(e.target.value)}
                                 />
                                 {successMessage && <div className='text-green-600'>{successMessage}</div>}
                             </div>
                             <button
-                                disabled={password.length==0 || firstName.length==0  || lastName.length==0 || loading}
+                                disabled={password.length == 0 || firstName.length == 0 || lastName.length == 0 || loading}
                                 onClick={updateProfile}
-                                className={`justify-center rounded-md text-sm font-medium ring-offset-background transition-colors h-10 px-4 py-2 w-full text-white ${(firstName.length > 0 && lastName.length>0 && password.length>6 && !loading) ? 'bg-green-500 hover:underline' : 'bg-green-900'}`}>
+                                className={`justify-center rounded-md text-sm font-medium ring-offset-background transition-colors h-10 px-4 py-2 w-full text-white ${(firstName.length > 0 && lastName.length > 0 && password.length > 6 && !loading) ? 'bg-green-500 hover:underline' : 'bg-green-900'}`}>
                                 {!loading ? 'Update Profile' : (
                                     <div className='flex justify-center'>
                                         <span className='pr-1 text-md'>updating...</span>
